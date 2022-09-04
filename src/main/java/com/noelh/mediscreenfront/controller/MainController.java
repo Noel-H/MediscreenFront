@@ -11,7 +11,7 @@ public class MainController {
     @GetMapping("")
     public String getIndex(){
         log.info("GET /");
-        return "Index";
+        return "redirect:/patient";
     }
 
 }

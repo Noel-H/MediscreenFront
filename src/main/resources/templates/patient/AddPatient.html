@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+</head>
+<body>
+<form th:action="@{/patient/add}" th:object="${patientDTO}" method="post">
+
+    <label for="lastName">LastName</label>
+    <input type="text" id="lastName" th:field="*{lastName}" />
+
+    <label for="firstName">FirstName</label>
+    <input type="text" id="firstName" th:field="*{firstName}"/>
+
+    <button type="submit">Submit</button>
+    <a th:href="@{/patient}">Cancel</a>
+</form>
+</body>
+</html>

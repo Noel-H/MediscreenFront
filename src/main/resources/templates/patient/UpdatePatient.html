@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+<form th:action="@{/patient/update/{id}(id=${patient.getId})}" th:object="${patient}" method="post">
+
+    <label for="id">Id</label>
+    <input type="text" id="id" th:field="*{id}" readonly/>
+
+    <label for="lastName">LastName</label>
+    <input type="text" id="lastName" th:field="*{lastName}" />
+
+    <label for="firstName">FirstName</label>
+    <input type="text" id="firstName" th:field="*{firstName}" />
+
+    <button type="submit">Submit</button>
+    <a th:href="@{/patient}">Cancel</a>
+</form>
+</body>
+</html>
