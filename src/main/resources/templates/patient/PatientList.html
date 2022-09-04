@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PatientList</title>
+</head>
+<body>
+<p>PatientList page | <a th:href="@{/patient/add}">Add New Patient</a></p>
+<table>
+  <tbody>
+  <tr th:each="patient : ${patientList}">
+    <td th:text="${patient.getLastName()}">LastName</td>
+    <td th:text="${patient.getFirstName()}">FirstName</td>
+    <td><a th:href="@{http://localhost:8081/notes/{id}(id=${patient.getId})}">Notes</a></td>
+    <td><a th:href="@{/patient/update/{id}(id=${patient.getId})}">Update</a></td>
+    <td><a th:href="@{/patient/delete/{id}(id=${patient.getId})}">Delete</a></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
