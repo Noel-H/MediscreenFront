@@ -34,19 +34,19 @@ public class NoteController {
         return "note/NoteListByPatientId";
     }
 
-//    @GetMapping("note/read/{id}")
-//    public String getReadNoteFromHistory(@PathVariable("id") String id, Model model){
-//        log.info("GET note/read/{}", id);
-//        NoteBean noteBean;
-//        try {
-//            noteBean = mediscreenNoteProxy.getNoteById(id);
-//        } catch (Exception e) {
-//            log.error("GET note/read/{} : ERROR = {}", id, e.getMessage());
-//            return "redirect:/patient";
-//        }
-//        model.addAttribute("note", noteBean);
-//        return "note/ReadNoteByPatientId";
-//    }
+    @GetMapping("/read/{id}")
+    public String getReadNoteFromHistory(@PathVariable("id") String id, Model model){
+        log.info("GET note/read/{}", id);
+        NoteBean noteBean;
+        try {
+            noteBean = mediscreenNoteProxy.getNoteById(id);
+        } catch (Exception e) {
+            log.error("GET note/read/{} : ERROR = {}", id, e.getMessage());
+            return "redirect:/patient";
+        }
+        model.addAttribute("note", noteBean);
+        return "note/ReadNoteById";
+    }
 
 //    @GetMapping("/add")
 //    public String getAddNote(Model model){
