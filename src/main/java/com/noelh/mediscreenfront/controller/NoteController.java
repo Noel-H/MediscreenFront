@@ -19,13 +19,6 @@ public class NoteController {
         this.mediscreenNoteProxy = mediscreenNoteProxy;
     }
 
-    @GetMapping("")
-    public String getNoteList(Model model){
-        log.info("GET /");
-        model.addAttribute("noteList", mediscreenNoteProxy.getNoteList());
-        return "note/NoteList";
-    }
-
     @GetMapping("/patientId/{patientId}")
     public String getNoteListByPatientId(@PathVariable("patientId") Long patientId, Model model){
         log.info("GET /note/patientId/{}", patientId);
@@ -48,20 +41,6 @@ public class NoteController {
         return "note/ReadNoteById";
     }
 
-//    @GetMapping("/add")
-//    public String getAddNote(Model model){
-//        log.info("GET /add");
-//        model.addAttribute("noteDTO", new NoteDTOBean());
-//        return "note/AddNote";
-//    }
-//
-//    @PostMapping("/add")
-//    public String postAddNote(@ModelAttribute NoteDTOBean noteDTOBean){
-//        log.info("POST /add");
-//        mediscreenNoteProxy.addNote(noteDTOBean);
-//        return "redirect:/note";
-//    }
-
     @GetMapping("/add/{patientId}")
     public String getAddNoteFromHistory(@PathVariable("patientId") Long patientId, Model model){
         log.info("GET /note/add/{}", patientId);
@@ -77,28 +56,7 @@ public class NoteController {
         mediscreenNoteProxy.addNote(noteDTOBean);
         return "redirect:/note/patientId/"+patientId;
     }
-//
-//    @GetMapping("/update/{id}")
-//    public String getUpdateNote(@PathVariable("id") String id, Model model){
-//        log.info("GET /update/{}", id);
-//        Note note;
-//        try {
-//            note = mediscreenNoteProxy.getNoteById(id);
-//        } catch (NoSuchElementException e) {
-//            log.error("GET /update/{} : ERROR = {}", id, e.getMessage());
-//            return "redirect:/";
-//        }
-//        model.addAttribute("note", note);
-//        return "note/UpdateNote";
-//    }
-//
-//    @PostMapping("/update/{id}")
-//    public String postUpdateNote(@PathVariable("id") String id, @ModelAttribute Note note){
-//        log.info("POST /update/{}", id);
-//        mediscreenNoteProxy.updateNote(id, new NoteDTO(note.getPatientId(), note.getNoteOfThePractitioner()));
-//        return "redirect:/";
-//    }
-//
+
     @GetMapping("/update/{id}")
     public String getUpdateNoteFromHistory(@PathVariable("id") String id, Model model){
         log.info("GET note/update/{}", id);
@@ -119,19 +77,7 @@ public class NoteController {
         mediscreenNoteProxy.updateNote(id, new NoteDTOBean(noteBean.getPatientId(), noteBean.getNoteOfThePractitioner()));
         return "redirect:/note/patientId/"+noteBean.getPatientId();
     }
-//
-//    @GetMapping("/delete/{id}")
-//    public String deleteNote(@PathVariable("id") String id){
-//        log.info("GET /delete/{}", id);
-//        try {
-//            mediscreenNoteProxy.deleteNote(id);
-//        } catch (NoSuchElementException e) {
-//            log.error("GET /delete/{} : ERROR = {}", id, e.getMessage());
-//            return "redirect:/";
-//        }
-//        return "redirect:/";
-//    }
-//
+
     @GetMapping("/delete/{id}")
     public String deleteNoteFromHistory(@PathVariable("id") String id){
         log.info("GET /note/delete/{}", id);
