@@ -99,26 +99,26 @@ public class NoteController {
 //        return "redirect:/";
 //    }
 //
-//    @GetMapping("note/update/{id}")
-//    public String getUpdateNoteFromHistory(@PathVariable("id") String id, Model model){
-//        log.info("GET note/update/{}", id);
-//        Note note;
-//        try {
-//            note = mediscreenNoteProxy.getNoteById(id);
-//        } catch (NoSuchElementException e) {
-//            log.error("GET note/update/{} : ERROR = {}", id, e.getMessage());
-//            return "redirect:http/localhost:8080/patient";
-//        }
-//        model.addAttribute("note", note);
-//        return "note/UpdateNoteByPatientId";
-//    }
-//
-//    @PostMapping("note/update/{id}")
-//    public String postUpdateNoteFromHistory(@PathVariable("id") String id, @ModelAttribute Note note){
-//        log.info("POST note/update/{}", id);
-//        mediscreenNoteProxy.updateNote(id, new NoteDTO(note.getPatientId(), note.getNoteOfThePractitioner()));
-//        return "redirect:/note/"+note.getPatientId();
-//    }
+    @GetMapping("/update/{id}")
+    public String getUpdateNoteFromHistory(@PathVariable("id") String id, Model model){
+        log.info("GET note/update/{}", id);
+        NoteBean noteBean;
+        try {
+            noteBean = mediscreenNoteProxy.getNoteById(id);
+        } catch (Exception e) {
+            log.error("GET note/update/{} : ERROR = {}", id, e.getMessage());
+            return "redirect:/patient";
+        }
+        model.addAttribute("note", noteBean);
+        return "note/UpdateNoteById";
+    }
+
+    @PostMapping("/update/{id}")
+    public String postUpdateNoteFromHistory(@PathVariable("id") String id, @ModelAttribute NoteBean noteBean){
+        log.info("POST note/update/{}", id);
+        mediscreenNoteProxy.updateNote(id, new NoteDTOBean(noteBean.getPatientId(), noteBean.getNoteOfThePractitioner()));
+        return "redirect:/note/patientId/"+noteBean.getPatientId();
+    }
 //
 //    @GetMapping("/delete/{id}")
 //    public String deleteNote(@PathVariable("id") String id){
@@ -132,17 +132,17 @@ public class NoteController {
 //        return "redirect:/";
 //    }
 //
-//    @GetMapping("note/delete/{id}")
-//    public String deleteNoteFromHistory(@PathVariable("id") String id){
-//        log.info("GET note/delete/{}", id);
-//        Note note;
-//        try {
-//            note = mediscreenNoteProxy.deleteNote(id);
-//        } catch (NoSuchElementException e) {
-//            log.error("GET note/delete/{} : ERROR = {}", id, e.getMessage());
-//            return "redirect:http://localhost:8080/patient";
-//        }
-//        return "redirect:/note/"+note.getPatientId();
-//    }
+    @GetMapping("/delete/{id}")
+    public String deleteNoteFromHistory(@PathVariable("id") String id){
+        log.info("GET /note/delete/{}", id);
+        NoteBean noteBean;
+        try {
+            noteBean = mediscreenNoteProxy.deleteNoteById(id);
+        } catch (Exception e) {
+            log.error("GET /note/delete/{} : ERROR = {}", id, e.getMessage());
+            return "redirect:/patient";
+        }
+        return "redirect:/note/patientId/"+noteBean.getPatientId();
+    }
 
 }

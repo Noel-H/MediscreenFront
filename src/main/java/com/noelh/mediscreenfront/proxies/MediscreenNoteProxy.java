@@ -26,5 +26,5 @@ public interface MediscreenNoteProxy {
     NoteBean updateNote(@PathVariable("id") String id, @RequestBody NoteDTOBean noteDTOBean);
 
     @DeleteMapping("/{id}")
-    NoteBean deleteNoteBean(@PathVariable("id") String id);
+    NoteBean deleteNoteById(@PathVariable("id") String id);
 }
