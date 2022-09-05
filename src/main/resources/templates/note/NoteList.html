@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NoteList</title>
+</head>
+<body>
+<p>NoteList page | <a th:href="@{/add}">Add New Note</a></p>
+<table>
+    <tbody>
+    <tr th:each="note : ${noteList}">
+        <td th:text="${note.getPatientId()}">PatientId</td>
+        <td th:text="${#strings.abbreviate(note.getNoteOfThePractitioner(),100)}">NoteOfThePractitioner</td>
+        <td><a th:href="@{/notes/read/{id}(id=${note.getId})}">Read</a></td>
+        <td><a th:href="@{/update/{id}(id=${note.getId})}">Update</a></td>
+        <td><a th:href="@{/delete/{id}(id=${note.getId})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
