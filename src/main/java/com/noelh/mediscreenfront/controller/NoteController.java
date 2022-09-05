@@ -34,49 +34,49 @@ public class NoteController {
         return "note/NoteListByPatientId";
     }
 
-    @GetMapping("note/read/{id}")
-    public String getReadNoteFromHistory(@PathVariable("id") String id, Model model){
-        log.info("GET note/read/{}", id);
-        NoteBean noteBean;
-        try {
-            noteBean = mediscreenNoteProxy.getNoteById(id);
-        } catch (Exception e) {
-            log.error("GET note/read/{} : ERROR = {}", id, e.getMessage());
-            return "redirect:/patient";
-        }
-        model.addAttribute("note", noteBean);
-        return "note/ReadNoteByPatientId";
-    }
+//    @GetMapping("note/read/{id}")
+//    public String getReadNoteFromHistory(@PathVariable("id") String id, Model model){
+//        log.info("GET note/read/{}", id);
+//        NoteBean noteBean;
+//        try {
+//            noteBean = mediscreenNoteProxy.getNoteById(id);
+//        } catch (Exception e) {
+//            log.error("GET note/read/{} : ERROR = {}", id, e.getMessage());
+//            return "redirect:/patient";
+//        }
+//        model.addAttribute("note", noteBean);
+//        return "note/ReadNoteByPatientId";
+//    }
 
-    @GetMapping("/add")
-    public String getAddNote(Model model){
-        log.info("GET /add");
-        model.addAttribute("noteDTO", new NoteDTOBean());
-        return "note/AddNote";
-    }
-
-    @PostMapping("/add")
-    public String postAddNote(@ModelAttribute NoteDTOBean noteDTOBean){
-        log.info("POST /add");
-        mediscreenNoteProxy.addNote(noteDTOBean);
-        return "redirect:/note";
-    }
-
-//    @GetMapping("/note/add/{id}")
-//    public String getAddNoteFromHistory(@PathVariable("id") Long patientId, Model model){
-//        log.info("GET /addByPatientId/{}", patientId);
-//        NoteDTO noteDTO = new NoteDTO();
-//        noteDTO.setPatientId(patientId);
-//        model.addAttribute("noteDTO", noteDTO);
-//        return "note/AddNoteByPatientId";
+//    @GetMapping("/add")
+//    public String getAddNote(Model model){
+//        log.info("GET /add");
+//        model.addAttribute("noteDTO", new NoteDTOBean());
+//        return "note/AddNote";
 //    }
 //
-//    @PostMapping("/note/add/{id}")
-//    public String postAddNoteFromHistory(@PathVariable("id") Long patientId, @ModelAttribute NoteDTO noteDTO){
-//        log.info("POST /addByPatientId/{}", patientId);
-//        mediscreenNoteProxy.addNote(noteDTO);
-//        return "redirect:/note/"+patientId;
+//    @PostMapping("/add")
+//    public String postAddNote(@ModelAttribute NoteDTOBean noteDTOBean){
+//        log.info("POST /add");
+//        mediscreenNoteProxy.addNote(noteDTOBean);
+//        return "redirect:/note";
 //    }
+
+    @GetMapping("/add/{patientId}")
+    public String getAddNoteFromHistory(@PathVariable("patientId") Long patientId, Model model){
+        log.info("GET /note/add/{}", patientId);
+        NoteDTOBean noteDTOBean = new NoteDTOBean();
+        noteDTOBean.setPatientId(patientId);
+        model.addAttribute("noteDTO", noteDTOBean);
+        return "note/AddNoteByPatientId";
+    }
+
+    @PostMapping("/add/{patientId}")
+    public String postAddNoteFromHistory(@PathVariable("patientId") Long patientId, @ModelAttribute NoteDTOBean noteDTOBean){
+        log.info("POST /note/add/{}", patientId);
+        mediscreenNoteProxy.addNote(noteDTOBean);
+        return "redirect:/note/patientId/"+patientId;
+    }
 //
 //    @GetMapping("/update/{id}")
 //    public String getUpdateNote(@PathVariable("id") String id, Model model){

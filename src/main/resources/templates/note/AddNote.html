@@ -5,7 +5,7 @@
     <title>Add</title>
 </head>
 <body>
-<form th:action="@{/add}" th:object="${noteDTO}" method="post">
+<form th:action="@{/note/add}" th:object="${noteDTO}" method="post">
 
     <label for="patientId">PatientId</label>
     <input type="text" id="patientId" th:field="*{patientId}" />

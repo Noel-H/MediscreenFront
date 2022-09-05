@@ -5,7 +5,7 @@
     <title>NoteListByPatientId</title>
 </head>
 <body>
-<p>NoteListByPatientId page | <a th:href="@{/notes/add/{id}(id=${patientId})}">Add New Note By Patient Id</a> | <a th:href="@{/}">Home</a></p>
+<p>NoteListByPatientId page | <a th:href="@{/note/add/{id}(id=${patientId})}">Add New Note By Patient Id</a> | <a th:href="@{/}">Home</a></p>
 <table>
     <tbody>
     <tr th:each="note : ${noteListByPatientId}">

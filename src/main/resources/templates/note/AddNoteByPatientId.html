@@ -5,7 +5,7 @@
     <title>AddNoteByPatientId</title>
 </head>
 <body>
-<form th:action="@{/notes/add/{id}(id=${noteDTO.getPatientId()})}" th:object="${noteDTO}" method="post">
+<form th:action="@{/note/add/{id}(id=${noteDTO.getPatientId()})}" th:object="${noteDTO}" method="post">
 
   <label for="patientId">PatientId</label>
   <input type="text" id="patientId" th:field="*{patientId}" readonly/>
@@ -14,7 +14,7 @@
     <textarea id="noteOfThePractitioner" rows="20" cols="50" th:field="*{noteOfThePractitioner}"></textarea>
 
   <button type="submit">Submit</button>
-  <a th:href="@{/notes/{id}(id=${noteDTO.getPatientId()})}">Cancel</a>
+  <a th:href="@{/note/patientId/{id}(id=${noteDTO.getPatientId()})}">Cancel</a>
 </form>
 </body>
 </html>
