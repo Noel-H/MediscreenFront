@@ -9,6 +9,7 @@
 <table>
     <tbody>
     <tr th:each="note : ${noteListByPatientId}">
+        <td th:text="${note.getId()}">Id</td>
         <td th:text="${note.getPatientId()}">PatientId</td>
         <td th:text="${#strings.abbreviate(note.getNoteOfThePractitioner(),100)}">NoteOfThePractitioner</td>
         <td><a th:href="@{/note/read/{id}(id=${note.getId})}">Read</a></td>
