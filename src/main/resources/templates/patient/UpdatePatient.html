@@ -16,6 +16,18 @@
     <label for="firstName">FirstName</label>
     <input type="text" id="firstName" th:field="*{firstName}" />
 
+    <label for="dateOfBirth">DateOfBirth</label>
+    <input type="text" id="dateOfBirth" th:field="*{dateOfBirth}" />
+
+    <label for="sex">Sex</label>
+    <input type="text" id="sex" th:field="*{sex}"/>
+
+    <label for="homeAddress">HomeAddress</label>
+    <input type="text" id="homeAddress" th:field="*{homeAddress}" />
+
+    <label for="phoneNumber">PhoneNumber</label>
+    <input type="text" id="phoneNumber" th:field="*{phoneNumber}"/>
+
     <button type="submit">Submit</button>
     <a th:href="@{/patient}">Cancel</a>
 </form>

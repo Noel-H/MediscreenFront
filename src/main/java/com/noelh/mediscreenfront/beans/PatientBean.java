@@ -2,6 +2,8 @@ package com.noelh.mediscreenfront.beans;
 
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 public class PatientBean {
 
@@ -10,4 +12,12 @@ public class PatientBean {
     private String lastName;
 
     private String firstName;
+
+    private LocalDate dateOfBirth;
+
+    private Character sex;
+
+    private String homeAddress;
+
+    private String phoneNumber;
 }

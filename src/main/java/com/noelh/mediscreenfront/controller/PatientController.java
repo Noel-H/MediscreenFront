@@ -57,7 +57,12 @@ public class PatientController {
     @PostMapping("/update/{id}")
     public String postUpdatePatient(@PathVariable("id") Long id, @ModelAttribute PatientBean patientBean){
         log.info("POST /patient/update/{}", id);
-        mediscreenPatientProxy.updatePatient(id, new PatientDTOBean(patientBean.getLastName(), patientBean.getFirstName()));
+        mediscreenPatientProxy.updatePatient(id, new PatientDTOBean(patientBean.getLastName(),
+                patientBean.getFirstName(),
+                patientBean.getDateOfBirth(),
+                patientBean.getSex(),
+                patientBean.getHomeAddress(),
+                patientBean.getPhoneNumber()));
         return "redirect:/patient";
     }
 

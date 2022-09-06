@@ -9,8 +9,13 @@
 <table>
   <tbody>
   <tr th:each="patient : ${patientList}">
+    <td th:text="${patient.getId()}">Id</td>
     <td th:text="${patient.getLastName()}">LastName</td>
     <td th:text="${patient.getFirstName()}">FirstName</td>
+    <td th:text="${patient.getDateOfBirth()}">DateOfBirth</td>
+    <td th:text="${patient.getSex()}">Sex</td>
+    <td th:text="${patient.getHomeAddress()}">HomeAddress</td>
+    <td th:text="${patient.getPhoneNumber()}">PhoneNumber</td>
     <td><a th:href="@{/note/patientId/{id}(id=${patient.getId})}">NoteList</a></td>
     <td><a th:href="@{/patient/update/{id}(id=${patient.getId})}">Update</a></td>
     <td><a th:href="@{/patient/delete/{id}(id=${patient.getId})}">Delete</a></td>
