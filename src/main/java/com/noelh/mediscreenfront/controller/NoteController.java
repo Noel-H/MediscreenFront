@@ -2,7 +2,9 @@ package com.noelh.mediscreenfront.controller;
 
 import com.noelh.mediscreenfront.beans.NoteBean;
 import com.noelh.mediscreenfront.beans.NoteDTOBean;
+import com.noelh.mediscreenfront.proxies.MediscreenDiabetesProxy;
 import com.noelh.mediscreenfront.proxies.MediscreenNoteProxy;
+import com.noelh.mediscreenfront.proxies.MediscreenPatientProxy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,15 +17,22 @@ public class NoteController {
 
     private final MediscreenNoteProxy mediscreenNoteProxy;
 
-    public NoteController(MediscreenNoteProxy mediscreenNoteProxy){
+    private final MediscreenPatientProxy mediscreenPatientProxy;
+
+    private final MediscreenDiabetesProxy mediscreenDiabetesProxy;
+
+    public NoteController(MediscreenNoteProxy mediscreenNoteProxy, MediscreenPatientProxy mediscreenPatientProxy, MediscreenDiabetesProxy mediscreenDiabetesProxy){
         this.mediscreenNoteProxy = mediscreenNoteProxy;
+        this.mediscreenPatientProxy = mediscreenPatientProxy;
+        this.mediscreenDiabetesProxy = mediscreenDiabetesProxy;
     }
 
     @GetMapping("/patientId/{patientId}")
     public String getNoteListByPatientId(@PathVariable("patientId") Long patientId, Model model){
         log.info("GET /note/patientId/{}", patientId);
         model.addAttribute("noteListByPatientId", mediscreenNoteProxy.getNoteListByPatientId(patientId));
-        model.addAttribute("patientId", patientId);
+        model.addAttribute("patient", mediscreenPatientProxy.getPatientById(patientId));
+        model.addAttribute("riskLevel", mediscreenDiabetesProxy.getDiabetesRiskLevel(patientId));
         return "note/NoteListByPatientId";
     }
 

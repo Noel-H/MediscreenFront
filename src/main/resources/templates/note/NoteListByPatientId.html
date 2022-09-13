@@ -5,7 +5,24 @@
     <title>NoteListByPatientId</title>
 </head>
 <body>
-<p>NoteListByPatientId page | <a th:href="@{/note/add/{id}(id=${patientId})}">Add New Note By Patient Id</a> | <a th:href="@{/}">Home</a></p>
+<p>NoteListByPatientId page | <a th:href="@{/note/add/{id}(id=${patient.getId()})}">Add New Note By Patient Id</a> | <a th:href="@{/}">Home</a></p>
+<div>
+<table>
+    <tbody>
+    <tr>
+        <td th:text="${patient.getId()}">Id</td>
+        <td th:text="${patient.getLastName()}">LastName</td>
+        <td th:text="${patient.getFirstName()}">FirstName</td>
+        <td th:text="${patient.getDateOfBirth()}">DateOfBirth</td>
+        <td th:text="${patient.getSex()}">Sex</td>
+        <td th:text="${patient.getHomeAddress()}">HomeAddress</td>
+        <td th:text="${patient.getPhoneNumber()}">PhoneNumber</td>
+        <td th:text="${riskLevel}">RiskLevel</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<div>
 <table>
     <tbody>
     <tr th:each="note : ${noteListByPatientId}">
@@ -18,5 +35,6 @@
     </tr>
     </tbody>
 </table>
+</div>
 </body>
 </html>
