@@ -19,8 +19,12 @@
     <label for="dateOfBirth">DateOfBirth</label>
     <input type="text" id="dateOfBirth" th:field="*{dateOfBirth}" />
 
-    <label for="sex">Sex</label>
-    <input type="text" id="sex" th:field="*{sex}"/>
+    <span>Sex :</span>
+    <label for="M">M</label>
+    <input type="radio" id="M" value="M" th:field="*{sex}"/>
+
+    <label for="F">F</label>
+    <input type="radio" id="F" value="F" th:field="*{sex}"/>
 
     <label for="homeAddress">HomeAddress</label>
     <input type="text" id="homeAddress" th:field="*{homeAddress}" />

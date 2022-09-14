@@ -1,5 +1,6 @@
 package com.noelh.mediscreenfront.beans;
 
+import com.noelh.mediscreenfront.beans.enumerationbean.GenderBean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ public class PatientDTOBean {
 
     private LocalDate dateOfBirth;
 
-    private Character sex;
+    private GenderBean sex;
 
     private String homeAddress;
 

@@ -1,5 +1,6 @@
 package com.noelh.mediscreenfront.beans;
 
+import com.noelh.mediscreenfront.beans.enumerationbean.GenderBean;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ public class PatientBean {
 
     private LocalDate dateOfBirth;
 
-    private Character sex;
+    private GenderBean sex;
 
     private String homeAddress;
 
