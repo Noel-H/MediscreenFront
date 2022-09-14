@@ -14,7 +14,7 @@ class MainControllerTest {
     private MainController mainController;
 
     @Test
-    public void getIndex_Should_String(){
+    public void getIndex_Should_Redirect_At_Patient(){
         //Given
 
 

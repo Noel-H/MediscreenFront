@@ -3,6 +3,7 @@ package com.noelh.mediscreenfront.controller;
 import com.noelh.mediscreenfront.beans.PatientBean;
 import com.noelh.mediscreenfront.beans.PatientDTOBean;
 import com.noelh.mediscreenfront.proxies.MediscreenPatientProxy;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +47,7 @@ public class PatientController {
         PatientBean patientBean;
         try {
             patientBean = mediscreenPatientProxy.getPatientById(id);
-        } catch (Exception e) {
+        } catch (FeignException.NotFound e) {
             log.error("GET /patient/update/{} : ERROR = {}", id, e.getMessage());
             return "redirect:/patient";
         }
@@ -71,7 +72,7 @@ public class PatientController {
         log.info("GET /patient/delete/{}", id);
         try{
             mediscreenPatientProxy.deletePatientBean(id);
-        } catch (Exception e){
+        } catch (FeignException.NotFound e){
             log.error("GET /patient/delete/{} | [ERROR] : {}", id, e.getMessage());
         }
         return "redirect:/patient";

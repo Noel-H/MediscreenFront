@@ -5,6 +5,7 @@ import com.noelh.mediscreenfront.beans.NoteDTOBean;
 import com.noelh.mediscreenfront.proxies.MediscreenDiabetesProxy;
 import com.noelh.mediscreenfront.proxies.MediscreenNoteProxy;
 import com.noelh.mediscreenfront.proxies.MediscreenPatientProxy;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +43,7 @@ public class NoteController {
         NoteBean noteBean;
         try {
             noteBean = mediscreenNoteProxy.getNoteById(id);
-        } catch (Exception e) {
+        } catch (FeignException.NotFound e) {
             log.error("GET note/read/{} : ERROR = {}", id, e.getMessage());
             return "redirect:/patient";
         }
@@ -72,7 +73,7 @@ public class NoteController {
         NoteBean noteBean;
         try {
             noteBean = mediscreenNoteProxy.getNoteById(id);
-        } catch (Exception e) {
+        } catch (FeignException.NotFound e) {
             log.error("GET note/update/{} : ERROR = {}", id, e.getMessage());
             return "redirect:/patient";
         }
@@ -93,7 +94,7 @@ public class NoteController {
         NoteBean noteBean;
         try {
             noteBean = mediscreenNoteProxy.deleteNoteById(id);
-        } catch (Exception e) {
+        } catch (FeignException.NotFound e) {
             log.error("GET /note/delete/{} : ERROR = {}", id, e.getMessage());
             return "redirect:/patient";
         }
