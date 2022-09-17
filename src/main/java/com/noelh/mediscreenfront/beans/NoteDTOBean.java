@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Note DTO Bean
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

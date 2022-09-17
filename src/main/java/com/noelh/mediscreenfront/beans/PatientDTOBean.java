@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+/**
+ * Patient DTO Bean
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -2,6 +2,9 @@ package com.noelh.mediscreenfront.beans;
 
 import lombok.Data;
 
+/**
+ * Note Bean
+ */
 @Data
 public class NoteBean {
 

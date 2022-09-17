@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Note Controller
+ */
 @Slf4j
 @Controller
 @RequestMapping("/note")
@@ -22,12 +25,24 @@ public class NoteController {
 
     private final MediscreenDiabetesProxy mediscreenDiabetesProxy;
 
+    /**
+     * Note controller constructor
+     * @param mediscreenNoteProxy
+     * @param mediscreenPatientProxy
+     * @param mediscreenDiabetesProxy
+     */
     public NoteController(MediscreenNoteProxy mediscreenNoteProxy, MediscreenPatientProxy mediscreenPatientProxy, MediscreenDiabetesProxy mediscreenDiabetesProxy){
         this.mediscreenNoteProxy = mediscreenNoteProxy;
         this.mediscreenPatientProxy = mediscreenPatientProxy;
         this.mediscreenDiabetesProxy = mediscreenDiabetesProxy;
     }
 
+    /**
+     * Get a list of note by a patient id
+     * @param patientId used to get the list
+     * @param model used by
+     * @return NoteListByPatientId.html
+     */
     @GetMapping("/patientId/{patientId}")
     public String getNoteListByPatientId(@PathVariable("patientId") Long patientId, Model model){
         log.info("GET /note/patientId/{}", patientId);
@@ -37,6 +52,12 @@ public class NoteController {
         return "note/NoteListByPatientId";
     }
 
+    /**
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/read/{id}")
     public String getReadNoteFromHistory(@PathVariable("id") String id, Model model){
         log.info("GET note/read/{}", id);
@@ -51,6 +72,12 @@ public class NoteController {
         return "note/ReadNoteById";
     }
 
+    /**
+     *
+     * @param patientId
+     * @param model
+     * @return
+     */
     @GetMapping("/add/{patientId}")
     public String getAddNoteFromHistory(@PathVariable("patientId") Long patientId, Model model){
         log.info("GET /note/add/{}", patientId);
@@ -60,6 +87,12 @@ public class NoteController {
         return "note/AddNoteByPatientId";
     }
 
+    /**
+     *
+     * @param patientId
+     * @param noteDTOBean
+     * @return
+     */
     @PostMapping("/add/{patientId}")
     public String postAddNoteFromHistory(@PathVariable("patientId") Long patientId, @ModelAttribute NoteDTOBean noteDTOBean){
         log.info("POST /note/add/{}", patientId);
@@ -67,6 +100,12 @@ public class NoteController {
         return "redirect:/note/patientId/"+patientId;
     }
 
+    /**
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/update/{id}")
     public String getUpdateNoteFromHistory(@PathVariable("id") String id, Model model){
         log.info("GET note/update/{}", id);
@@ -81,6 +120,12 @@ public class NoteController {
         return "note/UpdateNoteById";
     }
 
+    /**
+     *
+     * @param id
+     * @param noteBean
+     * @return
+     */
     @PostMapping("/update/{id}")
     public String postUpdateNoteFromHistory(@PathVariable("id") String id, @ModelAttribute NoteBean noteBean){
         log.info("POST note/update/{}", id);
@@ -88,6 +133,11 @@ public class NoteController {
         return "redirect:/note/patientId/"+noteBean.getPatientId();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("/delete/{id}")
     public String deleteNoteFromHistory(@PathVariable("id") String id){
         log.info("GET /note/delete/{}", id);
