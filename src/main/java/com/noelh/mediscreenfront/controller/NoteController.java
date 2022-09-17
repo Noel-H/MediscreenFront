@@ -121,7 +121,7 @@ public class NoteController {
     }
 
     /**
-     * post
+     * Post an updated note
      * @param id used to update the wanted note
      * @param noteBean is the updated note to save
      * @return a redirection to /note/patientId/{noteBean.getPatientId()}
@@ -136,7 +136,7 @@ public class NoteController {
     /**
      * Delete a note
      * @param id used to delete the wanted note
-     * @return a redirection to /note/patientId/{noteBean.getPatientId()} or a redirection to /patient
+     * @return a redirection to /note/patientId/{noteBean.getPatientId()} or a redirection to /patient if an error is caught
      */
     @GetMapping("/delete/{id}")
     public String deleteNoteFromHistory(@PathVariable("id") String id){
