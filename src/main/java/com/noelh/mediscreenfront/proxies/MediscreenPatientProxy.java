@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * MediscreenPatient Proxy Interface
+ */
 @FeignClient(name = "MediscreenPatient", url = "${MediscreenPatientUrl}")
 public interface MediscreenPatientProxy {
 
