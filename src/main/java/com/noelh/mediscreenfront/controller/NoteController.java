@@ -27,9 +27,9 @@ public class NoteController {
 
     /**
      * Note controller constructor
-     * @param mediscreenNoteProxy
-     * @param mediscreenPatientProxy
-     * @param mediscreenDiabetesProxy
+     * @param mediscreenNoteProxy is a proxy to the note api
+     * @param mediscreenPatientProxy is a proxy to the patient api
+     * @param mediscreenDiabetesProxy is a proxy to the diabetes api
      */
     public NoteController(MediscreenNoteProxy mediscreenNoteProxy, MediscreenPatientProxy mediscreenPatientProxy, MediscreenDiabetesProxy mediscreenDiabetesProxy){
         this.mediscreenNoteProxy = mediscreenNoteProxy;
@@ -40,7 +40,7 @@ public class NoteController {
     /**
      * Get a list of note by a patient id
      * @param patientId used to get the list
-     * @param model used by
+     * @param model used for the html template
      * @return NoteListByPatientId.html
      */
     @GetMapping("/patientId/{patientId}")
@@ -53,10 +53,10 @@ public class NoteController {
     }
 
     /**
-     *
-     * @param id
-     * @param model
-     * @return
+     * Get a note to read by an id
+     * @param id used to find the wanted note
+     * @param model used for the html template
+     * @return ReadNoteById.html or a redirection to /patient if an error is caught
      */
     @GetMapping("/read/{id}")
     public String getReadNoteFromHistory(@PathVariable("id") String id, Model model){
@@ -73,10 +73,10 @@ public class NoteController {
     }
 
     /**
-     *
-     * @param patientId
-     * @param model
-     * @return
+     * Get the page to add a note
+     * @param patientId used to link the note to a patient
+     * @param model used for the html template
+     * @return AddNoteByPatientId.html
      */
     @GetMapping("/add/{patientId}")
     public String getAddNoteFromHistory(@PathVariable("patientId") Long patientId, Model model){
@@ -88,10 +88,10 @@ public class NoteController {
     }
 
     /**
-     *
-     * @param patientId
-     * @param noteDTOBean
-     * @return
+     * Post a note
+     * @param patientId used to link the note to a patient
+     * @param noteDTOBean used to create the note
+     * @return a redirection to /note/patientId/{patientId}
      */
     @PostMapping("/add/{patientId}")
     public String postAddNoteFromHistory(@PathVariable("patientId") Long patientId, @ModelAttribute NoteDTOBean noteDTOBean){
@@ -101,10 +101,10 @@ public class NoteController {
     }
 
     /**
-     *
-     * @param id
-     * @param model
-     * @return
+     * Get the page to update a note
+     * @param id used to find the note
+     * @param model used for the html template
+     * @return UpdateNoteById.html or a redirection to /patient if an error is caught
      */
     @GetMapping("/update/{id}")
     public String getUpdateNoteFromHistory(@PathVariable("id") String id, Model model){
@@ -121,10 +121,10 @@ public class NoteController {
     }
 
     /**
-     *
-     * @param id
-     * @param noteBean
-     * @return
+     * post
+     * @param id used to update the wanted note
+     * @param noteBean is the updated note to save
+     * @return a redirection to /note/patientId/{noteBean.getPatientId()}
      */
     @PostMapping("/update/{id}")
     public String postUpdateNoteFromHistory(@PathVariable("id") String id, @ModelAttribute NoteBean noteBean){
@@ -134,9 +134,9 @@ public class NoteController {
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * Delete a note
+     * @param id used to delete the wanted note
+     * @return a redirection to /note/patientId/{noteBean.getPatientId()} or a redirection to /patient
      */
     @GetMapping("/delete/{id}")
     public String deleteNoteFromHistory(@PathVariable("id") String id){
