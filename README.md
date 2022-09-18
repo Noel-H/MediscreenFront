@@ -1,6 +1,7 @@
 ## MediscreenFront
 
 ---
-**Test screenshot** 
+
+**Test coverage screenshot** 
 
 ![TestScreenshot](resourcesreadme/MediscreenFrontTestScreenshot.png)
