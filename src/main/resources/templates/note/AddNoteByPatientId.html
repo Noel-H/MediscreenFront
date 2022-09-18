@@ -3,18 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>AddNoteByPatientId</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        body { background: #6c757d; }
+        label { color: white;}
+    </style>
 </head>
 <body>
-<form th:action="@{/note/add/{id}(id=${noteDTO.getPatientId()})}" th:object="${noteDTO}" method="post">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <div class="container-fluid">
+        <a class="navbar-brand">AddNoteByPatientId page</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" th:href="@{/}"><button class="btn btn-outline-light">Home</button></a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container leftTop">
+    <form th:action="@{/note/add/{id}(id=${noteDTO.getPatientId()})}" th:object="${noteDTO}" method="post">
 
-  <label for="patientId">PatientId</label>
-  <input type="text" id="patientId" th:field="*{patientId}" readonly/>
+        <div class="mb-3">
+            <label for="patientId" class="form-label">PatientId</label>
+            <input type="text" id="patientId" th:field="*{patientId}" readonly class="form-control" style="background-color: lightsalmon"/>
+        </div>
 
-  <label for="noteOfThePractitioner">NoteOfThePractitioner</label>
-    <textarea id="noteOfThePractitioner" rows="20" cols="50" th:field="*{noteOfThePractitioner}"></textarea>
+        <div class="mb-3">
+            <label for="noteOfThePractitioner" class="form-label">NoteOfThePractitioner</label>
+            <textarea id="noteOfThePractitioner" rows="20" cols="50" th:field="*{noteOfThePractitioner}" class="form-control"></textarea>
+        </div>
 
-  <button type="submit">Submit</button>
-  <a th:href="@{/note/patientId/{id}(id=${noteDTO.getPatientId()})}">Cancel</a>
-</form>
+        <button type="submit" class="btn btn-light">Submit</button>
+        <a th:href="@{/note/patientId/{id}(id=${noteDTO.getPatientId()})}"><button type="button" class="btn btn-light">Cancel</button></a>
+    </form>
+</div>
 </body>
 </html>
