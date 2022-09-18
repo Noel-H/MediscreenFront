@@ -3,35 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>NoteListByPatientId</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        body { background: #6c757d; }
+    </style>
 </head>
 <body>
-<p>NoteListByPatientId page | <a th:href="@{/note/add/{id}(id=${patient.getId()})}">Add New Note By Patient Id</a> | <a th:href="@{/}">Home</a></p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <div class="container-fluid">
+        <a class="navbar-brand">NoteListByPatientId page</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" th:href="@{/}"><button class="btn btn-outline-light">Home</button></a>
+                <a class="nav-link active" th:href="@{/note/add/{id}(id=${patient.getId()})}"><button class="btn btn-outline-light">Add New Note By Patient Id</button></a>
+            </div>
+        </div>
+    </div>
+</nav>
 <div>
-<table>
-    <tbody>
+    <h1 style="color: white">- Patient</h1>
+<table class="table table-striped table-bordered table-secondary">
+    <thead class="table-primary">
     <tr>
-        <td th:text="${patient.getId()}">Id</td>
+        <th scope="col">Id</th>
+        <th scope="col">LastName</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">DateOfBirth</th>
+        <th scope="col">Sex</th>
+        <th scope="col">HomeAddress</th>
+        <th scope="col">PhoneNumber</th>
+        <th scope="col">RiskLevel</th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    <tr>
+        <th th:text="${patient.getId()}" scope="row">Id</th>
         <td th:text="${patient.getLastName()}">LastName</td>
         <td th:text="${patient.getFirstName()}">FirstName</td>
         <td th:text="${patient.getDateOfBirth()}">DateOfBirth</td>
         <td th:text="${patient.getSex()}">Sex</td>
         <td th:text="${patient.getHomeAddress()}">HomeAddress</td>
         <td th:text="${patient.getPhoneNumber()}">PhoneNumber</td>
-        <td th:text="${riskLevel}">RiskLevel</td>
+        <td th:text="'| - ' + ${riskLevel} + ' - |'" style="color: darkorange; font-weight: bold; text-align: center">RiskLevel</td>
     </tr>
     </tbody>
 </table>
 </div>
 <div>
-<table>
-    <tbody>
+    <h1 style="color: white">- NoteList</h1>
+<table class="table table-striped table-bordered table-secondary">
+    <thead class="table-primary">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">PatientId</th>
+        <th scope="col">NoteOfThePractitioner</th>
+        <th scope="col">Read</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
     <tr th:each="note : ${noteListByPatientId}">
-        <td th:text="${note.getId()}">Id</td>
+        <th th:text="${note.getId()}" scope="row">Id</th>
         <td th:text="${note.getPatientId()}">PatientId</td>
         <td th:text="${#strings.abbreviate(note.getNoteOfThePractitioner(),100)}">NoteOfThePractitioner</td>
-        <td><a th:href="@{/note/read/{id}(id=${note.getId})}">Read</a></td>
-        <td><a th:href="@{/note/update/{id}(id=${note.getId})}">Update</a></td>
-        <td><a th:href="@{/note/delete/{id}(id=${note.getId})}">Delete</a></td>
+        <td><a th:href="@{/note/read/{id}(id=${note.getId})}"><button type="button" class="btn btn-success">Read</button></a></td>
+        <td><a th:href="@{/note/update/{id}(id=${note.getId})}"><button type="button" class="btn btn-warning">Update</button></a></td>
+        <td><a th:href="@{/note/delete/{id}(id=${note.getId})}"><button type="button" class="btn btn-danger">Delete</button></a></td>
     </tr>
     </tbody>
 </table>
