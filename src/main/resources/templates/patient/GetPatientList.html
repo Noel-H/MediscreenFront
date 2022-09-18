@@ -1,24 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>PatientList</title>
+  <meta charset="UTF-8">
+  <title>PatientList</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <style>
+    body { background: #6c757d; }
+  </style>
 </head>
 <body>
-<p>PatientList page | <a th:href="@{/patient/add}">Add New Patient</a></p>
-<table>
-  <tbody>
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <div class="container-fluid">
+    <a class="navbar-brand">PatientList page</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" th:href="@{/patient/add}"><button class="btn btn-outline-light">Add New Patient</button></a>
+      </div>
+    </div>
+  </div>
+</nav>
+<table class="table table-striped table-bordered table-secondary">
+  <thead class="table-primary">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">LastName</th>
+    <th scope="col">FirstName</th>
+    <th scope="col">DateOfBirth</th>
+    <th scope="col">Sex</th>
+    <th scope="col">HomeAddress</th>
+    <th scope="col">PhoneNumber</th>
+    <th scope="col">Info</th>
+    <th scope="col">Update</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <tbody class="table-group-divider">
   <tr th:each="patient : ${patientList}">
-    <td th:text="${patient.getId()}">Id</td>
+    <th th:text="${patient.getId()}" scope="row">Id</th>
     <td th:text="${patient.getLastName()}">LastName</td>
     <td th:text="${patient.getFirstName()}">FirstName</td>
     <td th:text="${patient.getDateOfBirth()}">DateOfBirth</td>
     <td th:text="${patient.getSex()}">Sex</td>
     <td th:text="${patient.getHomeAddress()}">HomeAddress</td>
     <td th:text="${patient.getPhoneNumber()}">PhoneNumber</td>
-    <td><a th:href="@{/note/patientId/{id}(id=${patient.getId})}">Info</a></td>
-    <td><a th:href="@{/patient/update/{id}(id=${patient.getId})}">Update</a></td>
-    <td><a th:href="@{/patient/delete/{id}(id=${patient.getId})}">Delete</a></td>
+    <td><a th:href="@{/note/patientId/{id}(id=${patient.getId})}"><button type="button" class="btn btn-success">Info</button></a></td>
+    <td><a th:href="@{/patient/update/{id}(id=${patient.getId})}"><button type="button" class="btn btn-warning">Update</button></a></td>
+    <td><a th:href="@{/patient/delete/{id}(id=${patient.getId})}"><button type="button" class="btn btn-danger">Delete</button></a></td>
   </tr>
   </tbody>
 </table>
